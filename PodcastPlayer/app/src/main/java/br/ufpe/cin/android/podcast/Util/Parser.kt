@@ -1,12 +1,12 @@
-package br.ufpe.cin.android.podcast
+package br.ufpe.cin.android.podcast.Util
 
+import br.ufpe.cin.android.podcast.Model.ItemFeed
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
-
 import java.io.IOException
 import java.io.StringReader
-import java.util.ArrayList
+import java.util.*
 
 object Parser {
 
@@ -112,12 +112,19 @@ object Parser {
             } else if (name == "pubDate") {
                 pubDate = readData(parser, "pubDate")
             } else if (name == "description") {
-                description = readData(parser, "description")
+                description =
+                    readData(parser, "description")
             } else {
                 skip(parser)
             }
         }
-        return ItemFeed(title!!, link!!, pubDate!!, description!!, "carregar o link")
+        return ItemFeed(
+            title!!,
+            link!!,
+            pubDate!!,
+            description!!,
+            "carregar o link"
+        )
     }
 
     // Processa tags de forma parametrizada no feed.
